@@ -1,0 +1,83 @@
+<ng-template #emptyblog>
+  <div class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+<div
+  class="page-container"
+  *ngIf="blogPost && blogPost.length > 0; else emptyblog"
+>
+  <div class="chains">
+    <mat-card class="example-card" *ngFor="let post of blogPost">
+      <mat-card-header [style.height]="'3em'">
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ post.title }}</mat-card-title>
+      </mat-card-header>
+      <img
+        [style.height]="'17em'"
+        mat-card-image
+        src="https://wallpapers.com/images/high/gambar-tree-in-broken-sphere-3yc8d27hygbte0iv.webp"
+        alt="Photo of a Shiba Inu"
+      />
+      <mat-card-content [style.height]="'5em'">
+        <div [innerHTML]="post.content"></div>
+      </mat-card-content>
+      <mat-card-actions>
+        <div
+          fxFlex
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="-1em"
+        >
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+          <button mat-button [routerLink]="['/editpost', post.postId]">
+            Edit
+          </button>
+          <button mat-button (click)="delete(post.postId)">Delete</button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+<!-- <ng-container *ngIf="blogPost && blogPost.length > 0; else emptyblog">
+  <div
+    fxLayout="row"
+    *ngFor="let post of blogPost"
+    [style.padding-top]="'1.2em'"
+  >
+    <mat-card [style.margin-right]="'1em'">
+      <mat-card-content>
+        <a [routerLink]="['/blog/', post.postId, post.title | slug]">
+          <h2>{{ post.title }}</h2>
+        </a>
+      </mat-card-content>
+      <mat-card-content>
+        <div [innerHTML]="post.content"></div>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions FxFlex fxLayout="row">
+        <ng-container>
+          <button
+            mat-raised-button
+            color="accent"
+            [routerLink]="['/editpost', post.postId]"
+          >
+            Edit
+          </button>
+          <button mat-raised-button color="warn" (click)="delete(post.postId)">
+            Delete
+          </button>
+        </ng-container>
+        <span class="spacer"></span>
+        <button
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/blog/', post.postId, post.title | slug]"
+        >
+          Read More
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</ng-container> -->

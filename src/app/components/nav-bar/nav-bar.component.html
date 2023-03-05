@@ -1,0 +1,52 @@
+<mat-toolbar class="nav-bar mat-elevation-z2">
+  <button mat-button [routerLink]="['']">My blog</button>
+  <button
+    *ngIf="commonService.isLoggedUser"
+    mat-button
+    [routerLinkActive]="['link-active']"
+    [routerLink]="['/addpost']"
+  >
+    Add Post
+  </button>
+  <span class="spacer"></span>
+  <mat-form-field floatLabel="never">
+    <mat-select
+      placeholder="Search card"
+      #singleSelect
+      [(ngModel)]="titleValue"
+      (ngModelChange)="getCard()"
+      [formControl]="bankCtrl"
+    >
+      <app-mat-select-search
+        [formControl]="bankFilterCtrl"
+      ></app-mat-select-search>
+      <mat-option *ngFor="let bank of filteredBanks" [value]="bank.name">
+        {{ bank.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <span class="spacer"></span>
+  <div fxLayout="row" fxLayoutAlign="start end" [style.margin-left]="'35em'">
+    <ng-template #anonymousUser>
+      <button mat-button (click)="login()">Login with Google</button>
+    </ng-template>
+    <ng-container *ngIf="appUser; else anonymousUser">
+      <img mat-card-avatar class="user-avatar" src="{{ appUser.photoURL }}" />
+      <button mat-button [matMenuTriggerFor]="menu">
+        {{ appUser.name }}<mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
+    </ng-container>
+
+    <!-- <button
+      mat-button
+      [routerLinkActive]="['link-active']"
+      [routerLink]="['/login']"
+    >
+      Login
+    </button>
+    <button mat-button>Register</button> -->
+  </div>
+</mat-toolbar>

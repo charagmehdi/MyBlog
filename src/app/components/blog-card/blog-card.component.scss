@@ -1,0 +1,39 @@
+// .blog-card {
+//     margin-bottom: 15px;
+// }
+// .blog-title {
+//     text-decoration: none;
+//  }
+//  a:hover {
+//     color: indianred;
+//  }
+.page-container {
+    width: 100%;
+  }
+  
+  .chains {
+    width: 100%;
+    display: block;
+    overflow-x: scroll;
+  }
+  
+  .chains mat-card {
+    display: inline-block;
+    width: 20em;
+  }
+  
+  mat-card {
+    width: 20%;
+    height: 20%;
+    margin: 1em;
+  }
+ .spinner-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.gap{
+  margin-left: 1em;
+}
+   
